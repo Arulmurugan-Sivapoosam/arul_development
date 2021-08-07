@@ -1,5 +1,7 @@
 import Foundation
 
+//BlogLink: https://swiftdevelopers.tech/remove-userdefaults-boilerplate-code-using-propertywrapper-5e225f238fec
+
 class Article {
   @UserDefault(key: "Article_name", defaultValue: "") var name: String
   @UserDefault(key: "Article_ID", defaultValue: .zero) var id: Int

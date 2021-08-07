@@ -1,4 +1,5 @@
 import Foundation
+//Blog link: https://swiftdevelopers.tech/solve-codable-type-mismatch-error-using-property-wrapper-516cf43306f3
 
 enum CodableTypes: Codable {
   case int(Int)
