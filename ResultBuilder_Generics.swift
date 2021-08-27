@@ -92,31 +92,31 @@ typealias ArticleBuilder = DPArrayBuilder<Article>
 
   public typealias Components = [InputType]
 
-  @inlinable public static func buildBlock(_ components: Components...) -> Components {
+  public static func buildBlock(_ components: Components...) -> Components {
     buildArray(components)
   }
 
-  @inlinable public static func buildEither(first component: Components) -> Components {
+  public static func buildEither(first component: Components) -> Components {
     component
   }
 
-  @inlinable public static func buildEither(second component: Components) -> Components {
+  public static func buildEither(second component: Components) -> Components {
     component
   }
 
-  @inlinable public static func buildOptional(_ component: Components?) -> Components {
+  public static func buildOptional(_ component: Components?) -> Components {
     component ?? []
   }
 
-  @inlinable public static func buildArray(_ components: [Components]) -> Components {
+  public static func buildArray(_ components: [Components]) -> Components {
     components.flatMap {$0}
   }
 
-  @inlinable public static func buildExpression(_ expression: InputType) -> Components {
+  public static func buildExpression(_ expression: InputType) -> Components {
     [expression]
   }
 
-  @inlinable public static func buildExpression(_ expression: InputType?) -> Components {
+  public static func buildExpression(_ expression: InputType?) -> Components {
     expression.map { [$0] } ?? []
   }
 
