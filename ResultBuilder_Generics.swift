@@ -85,52 +85,39 @@ func loadArticles() -> [Article] {
 
 // MARK: - ResultBuilder implementaions. (DSL)
 
-@resultBuilder
-struct PermissionBuilder {
-  
-  static func buildOptional(_ component: [Access]?) -> [Access] {
-    component ?? []
-  }
-  
-  static func buildBlock(_ components: [Access]...) -> [Access] {
-    components.flatMap{$0}
-  }
-  
-  static func buildExpression(_ expression: Access) -> [Access] {
-    [expression]
-  }
-  
-  static func buildEither(second component: [Access]) -> [Access] {
-    component
-  }
-  
-  static func buildEither(first component: [Access]) -> [Access] {
-    component
-  }
-  
-}
+typealias PermissionBuilder = DPArrayBuilder<Access>
+typealias ArticleBuilder = DPArrayBuilder<Article>
 
-@resultBuilder
-struct ArticleBuilder {
-  
-  static func buildOptional(_ component: [Article]?) -> [Article] {
+@resultBuilder public struct DPArrayBuilder<InputType> {
+
+  public typealias Components = [InputType]
+
+  @inlinable public static func buildBlock(_ components: Components...) -> Components {
+    buildArray(components)
+  }
+
+  @inlinable public static func buildEither(first component: Components) -> Components {
+    component
+  }
+
+  @inlinable public static func buildEither(second component: Components) -> Components {
+    component
+  }
+
+  @inlinable public static func buildOptional(_ component: Components?) -> Components {
     component ?? []
   }
-  
-  static func buildBlock(_ components: [Article]...) -> [Article] {
-    components.flatMap{$0}
+
+  @inlinable public static func buildArray(_ components: [Components]) -> Components {
+    components.flatMap {$0}
   }
-  
-  static func buildExpression(_ expression: Article) -> [Article] {
+
+  @inlinable public static func buildExpression(_ expression: InputType) -> Components {
     [expression]
   }
-  
-  static func buildEither(second component: [Article]) -> [Article] {
-    component
+
+  @inlinable public static func buildExpression(_ expression: InputType?) -> Components {
+    expression.map { [$0] } ?? []
   }
-  
-  static func buildEither(first component: [Article]) -> [Article] {
-    component
-  }
-  
+
 }
