@@ -88,35 +88,35 @@ func loadArticles() -> [Article] {
 typealias PermissionBuilder = DPArrayBuilder<Access>
 typealias ArticleBuilder = DPArrayBuilder<Article>
 
-@resultBuilder public struct DPArrayBuilder<InputType> {
+@resultBuilder struct DPArrayBuilder<InputType> {
 
-  public typealias Components = [InputType]
+  typealias Components = [InputType]
 
-  public static func buildBlock(_ components: Components...) -> Components {
+  static func buildBlock(_ components: Components...) -> Components {
     buildArray(components)
   }
 
-  public static func buildEither(first component: Components) -> Components {
+  static func buildEither(first component: Components) -> Components {
     component
   }
 
-  public static func buildEither(second component: Components) -> Components {
+  static func buildEither(second component: Components) -> Components {
     component
   }
 
-  public static func buildOptional(_ component: Components?) -> Components {
+  static func buildOptional(_ component: Components?) -> Components {
     component ?? []
   }
 
-  public static func buildArray(_ components: [Components]) -> Components {
+  static func buildArray(_ components: [Components]) -> Components {
     components.flatMap {$0}
   }
 
-  public static func buildExpression(_ expression: InputType) -> Components {
+  static func buildExpression(_ expression: InputType) -> Components {
     [expression]
   }
 
-  public static func buildExpression(_ expression: InputType?) -> Components {
+  static func buildExpression(_ expression: InputType?) -> Components {
     expression.map { [$0] } ?? []
   }
 
