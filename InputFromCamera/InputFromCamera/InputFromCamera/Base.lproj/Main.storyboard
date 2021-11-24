@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pgc-Iz-ipR">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Profile Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ProfileController" customModule="InputFromCamera" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fEB-Oz-V8M" customClass="SignatureView" customModule="InputFromCamera" customModuleProvider="target">
+                                <rect key="frame" x="107" y="98" width="200" height="200"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="j8b-tp-32t">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0D-I3-pyP">
+                                        <rect key="frame" x="180" y="190" width="0.0" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0a-OP-NRH">
+                                        <rect key="frame" x="140" y="140" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="LhT-mo-Vy0"/>
+                                            <constraint firstAttribute="width" secondItem="J0a-OP-NRH" secondAttribute="height" multiplier="1:1" id="hpr-WZ-fEi"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <imageReference key="image" image="camera.viewfinder" catalog="system" symbolScale="large"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Z0D-I3-pyP" secondAttribute="trailing" constant="20" id="3Y3-8D-86Z"/>
+                                    <constraint firstAttribute="trailing" secondItem="j8b-tp-32t" secondAttribute="trailing" id="AD9-wE-sRU"/>
+                                    <constraint firstItem="j8b-tp-32t" firstAttribute="top" secondItem="fEB-Oz-V8M" secondAttribute="top" id="Gi8-Vc-5PK"/>
+                                    <constraint firstAttribute="trailing" secondItem="J0a-OP-NRH" secondAttribute="trailing" constant="10" id="Ik7-l8-fuJ"/>
+                                    <constraint firstAttribute="width" secondItem="fEB-Oz-V8M" secondAttribute="height" multiplier="1:1" id="Qln-uI-bpR"/>
+                                    <constraint firstAttribute="bottom" secondItem="Z0D-I3-pyP" secondAttribute="bottom" constant="10" id="cQj-oL-Sn1"/>
+                                    <constraint firstAttribute="bottom" secondItem="j8b-tp-32t" secondAttribute="bottom" id="gtD-y2-9Gm"/>
+                                    <constraint firstItem="j8b-tp-32t" firstAttribute="leading" secondItem="fEB-Oz-V8M" secondAttribute="leading" id="qSs-sG-VmR"/>
+                                    <constraint firstAttribute="width" constant="200" id="qeM-bX-0bZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="J0a-OP-NRH" secondAttribute="bottom" constant="10" id="uVa-Dz-Veo"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="cameraButton" destination="J0a-OP-NRH" id="m2t-BH-2py"/>
+                                    <outlet property="signature" destination="Z0D-I3-pyP" id="YUc-Wf-0T8"/>
+                                </connections>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Erz-nl-f85">
+                                <rect key="frame" x="30" y="318" width="374" height="172"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GyS-9m-mBP">
+                                        <rect key="frame" x="0.0" y="0.0" width="66" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="namePhonePad" textContentType="name"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ip7-Fo-X3Y">
+                                        <rect key="frame" x="0.0" y="46" width="124.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="phonePad" textContentType="tel"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-Mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ikg-ge-Sqz">
+                                        <rect key="frame" x="0.0" y="92" width="69.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xH1-t5-MCm">
+                                        <rect key="frame" x="0.0" y="138" width="81" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="street-address"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fEB-Oz-V8M" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="EqY-x8-jfM"/>
+                            <constraint firstItem="fEB-Oz-V8M" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="l4w-we-1qN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Erz-nl-f85" secondAttribute="trailing" constant="10" id="oJK-TK-VI0"/>
+                            <constraint firstItem="Erz-nl-f85" firstAttribute="top" secondItem="fEB-Oz-V8M" secondAttribute="bottom" constant="20" id="sCC-fC-Dvy"/>
+                            <constraint firstItem="Erz-nl-f85" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="wnD-k3-Kzc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="XWl-v8-nuc"/>
+                    <connections>
+                        <outlet property="address" destination="xH1-t5-MCm" id="dDg-UL-35J"/>
+                        <outlet property="emailAddress" destination="Ikg-ge-Sqz" id="Axy-mO-IJc"/>
+                        <outlet property="phoneNumber" destination="Ip7-Fo-X3Y" id="pOo-01-Myw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="807" y="84"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Roh-ao-Ans">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pgc-Iz-ipR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zbp-j0-HVu">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lve-8A-5Py"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UzL-sD-gk0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="18.840579710144929" y="83.705357142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="avatar" width="125" height="125"/>
+        <image name="camera.viewfinder" catalog="system" width="128" height="115"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
