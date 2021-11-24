@@ -27,7 +27,7 @@ private extension ProfileController {
   func addCamInputBarButton(to field: UITextField) {
     let toolBar = UIToolbar(frame: CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: 44)))
     toolBar.items = [
-      UIBarButtonItem(title: nil, image: .init(systemName: "camera.badge.ellipsis"), primaryAction: UIAction.captureTextFromCamera(responder: field, identifier: nil), menu: nil),
+      UIBarButtonItem(title: nil, image: .init(systemName: "camera.badge.ellipsis"), primaryAction: .captureTextFromCamera(responder: field, identifier: nil), menu: nil),
       UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
       UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(dismissKeyboard)),
     ]
