@@ -56,22 +56,8 @@ extension CoreDataStorable {
   
 }
 
-extension Result where Success: Collection {
-  var first: Result<Success.Element, Error> {
-    switch self {
-    case .success(let success):
-      if let firstElement = success.first {
-        return .success(firstElement)
-      } else {
-        return .failure(CoreDataError.nothingFound)
-      }
-    case let .failure(error):
-      return .failure(error)
-    }
-  }
-}
-
 //Implementations
+//ArticleList screen.
 class Article: NSManagedObject {
   var id: String?
   var title: String?
@@ -104,7 +90,7 @@ class ArticleListScreen: CoreDataStorable {
   
 }
 
-
+// ArticleDetail screen.
 class ArticleDetail: NSManagedObject {
   var id: String?
   var title: String?
