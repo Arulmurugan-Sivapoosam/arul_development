@@ -25,41 +25,33 @@ extension CoreDataStorable {
   }
   
   func update<ValueType>(_ keyPath: ReferenceWritableKeyPath<CoreDataType, ValueType>, value: ValueType, where predicate: NSPredicate) {
-    switch object(with: predicate) {
-    case let .success(matchedObject):
+    do {
+      let matchedObject = try object(with: predicate)
       matchedObject[keyPath: keyPath] = value
       // save your context here...
-    case .failure:
-      print("Failed to update value")
+    } catch let error {
+      print("Error: \(error.localizedDescription)")
     }
   }
   
-  func objects(with predicate: NSPredicate) -> Result<[CoreDataType], Error> {
+  func objects(with predicate: NSPredicate) throws -> [CoreDataType] {
     let fetchRequest = NSFetchRequest<CoreDataType>(entityName: entityName)
     fetchRequest.predicate = predicate
-    do {
-      return try .success(context.fetch(fetchRequest))
-    }
-    catch let error {
-      return .failure(error)
-    }
+    return try context.fetch(fetchRequest)
   }
   
-  func dataModels(with predicate: NSPredicate, transform: (CoreDataType) -> DataModelType) -> Result<[DataModelType], Error> {
-    switch objects(with: predicate) {
-    case let .success(coreDataObjects):
-      return .success(coreDataObjects.map{transform($0)})
-    case let .failure(error):
-      return .failure(error)
-    }
+  func dataModels(with predicate: NSPredicate, transform: (CoreDataType) -> DataModelType) throws -> [DataModelType] {
+    try objects(with: predicate).map{transform($0)}
   }
   
-  func object(with predicate: NSPredicate) -> Result<CoreDataType, Error> {
-    objects(with: predicate).first
+  func object(with predicate: NSPredicate) throws -> CoreDataType {
+    guard let firstEntity = try objects(with: predicate).first else{throw CoreDataError.nothingFound}
+    return firstEntity
   }
   
-  func dataModel(with predicate: NSPredicate, transform: (CoreDataType) -> DataModelType) -> Result<DataModelType, Error> {
-    dataModels(with: predicate, transform: transform).first
+  func dataModel(with predicate: NSPredicate, transform: (CoreDataType) -> DataModelType) throws -> DataModelType {
+    guard let firstEntity = try dataModels(with: predicate, transform: transform).first else{throw CoreDataError.nothingFound}
+    return firstEntity
   }
   
 }
@@ -79,9 +71,7 @@ extension Result where Success: Collection {
   }
 }
 
-
 //Implementations
-//ArticleList screen.
 class Article: NSManagedObject {
   var id: String?
   var title: String?
@@ -93,12 +83,11 @@ class ArticleListScreen: CoreDataStorable {
   typealias CoreDataType = Article
   
   func renderArticles(writtenBy authorName: String) {
-    switch objects(with: NSPredicate(format: "author=%@", authorName)) {
-    case let .success(articles):
-      // render you article here
-      break
-    case .failure:
-      print("Error occured while fetching articles.")
+    do {
+      let articleList = try objects(with: NSPredicate(format: "author=%@", authorName))
+      // ....
+    } catch let error {
+      print("Error: \(error.localizedDescription)")
     }
   }
   
@@ -116,7 +105,6 @@ class ArticleListScreen: CoreDataStorable {
 }
 
 
-//Article Detail screen.
 class ArticleDetail: NSManagedObject {
   var id: String?
   var title: String?
@@ -140,11 +128,11 @@ class ArticleDetailScreen: CoreDataStorable {
   }
   
   func fetchArticleDetail() {
-    switch dataModel(with: NSPredicate(format: "id=%@", article.id!), transform: {.init(article: article, content: $0.content)}) {
-    case let .success(detailModel):
-      render(articleDetail: detailModel)
-    case .failure:
-      print("Error while fetching articleDetail")
+    do {
+      let articleDetailModel = try dataModel(with: NSPredicate(format: "id=%@", article.id!), transform: {.init(article: article, content: $0.content)})
+      //....
+    } catch let error {
+      print("Error: \(error.localizedDescription)")
     }
   }
   
@@ -153,3 +141,4 @@ class ArticleDetailScreen: CoreDataStorable {
   }
   
 }
+
