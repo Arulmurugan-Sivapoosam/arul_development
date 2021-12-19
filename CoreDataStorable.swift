@@ -25,9 +25,9 @@ extension CoreDataStorable {
   }
   
   func update<ValueType>(_ keyPath: ReferenceWritableKeyPath<CoreDataType, ValueType>, value: ValueType, where predicate: NSPredicate) {
-    switch objects(with: predicate) {
-    case let .success(matchedObjects):
-      matchedObjects.first?[keyPath: keyPath] = value
+    switch object(with: predicate) {
+    case let .success(matchedObject):
+      matchedObject[keyPath: keyPath] = value
       // save your context here...
     case .failure:
       print("Failed to update value")
@@ -81,6 +81,7 @@ extension Result where Success: Collection {
 
 
 //Implementations
+//ArticleList screen.
 class Article: NSManagedObject {
   var id: String?
   var title: String?
@@ -115,6 +116,7 @@ class ArticleListScreen: CoreDataStorable {
 }
 
 
+//Article Detail screen.
 class ArticleDetail: NSManagedObject {
   var id: String?
   var title: String?
@@ -147,7 +149,7 @@ class ArticleDetailScreen: CoreDataStorable {
   }
   
   func render(articleDetail: ArticleDetailModel) {
-    //...
+    //....
   }
   
 }
